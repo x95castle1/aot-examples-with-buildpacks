@@ -1,0 +1,8 @@
+{
+  "name": "02-spring-aot",
+  "label": "Spring AOT",
+  "spring_aot": true,
+  "jvm_cache": false,
+  "native": false,
+  "image": "aot-buildpacks/02-spring-aot:local"
+}

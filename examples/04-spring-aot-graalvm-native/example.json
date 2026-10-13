@@ -1,0 +1,8 @@
+{
+  "name": "04-spring-aot-graalvm-native",
+  "label": "Native",
+  "spring_aot": true,
+  "jvm_cache": false,
+  "native": true,
+  "image": "aot-buildpacks/04-spring-aot-graalvm-native:local"
+}

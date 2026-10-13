@@ -1,0 +1,8 @@
+{
+  "name": "01-spring-java-baseline",
+  "label": "Baseline",
+  "spring_aot": false,
+  "jvm_cache": false,
+  "native": false,
+  "image": "aot-buildpacks/01-spring-java-baseline:local"
+}

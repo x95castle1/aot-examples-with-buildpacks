@@ -1,0 +1,8 @@
+{
+  "name": "03-spring-jvm-aot-cache",
+  "label": "JVM AOT cache",
+  "spring_aot": false,
+  "jvm_cache": true,
+  "native": false,
+  "image": "aot-buildpacks/03-spring-jvm-aot-cache:local"
+}

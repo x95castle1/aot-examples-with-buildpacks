@@ -1,0 +1,10 @@
+[_]
+schema-version = "0.2"
+
+[io.buildpacks]
+exclude = ["build", "build/**", ".gradle", ".gradle/**", "results", "results/**"]
+
+# TOML preserves the literal space; pack env files trim it away.
+[[io.buildpacks.build.env]]
+name = "BPE_DELIM_JAVA_TOOL_OPTIONS"
+value = " "

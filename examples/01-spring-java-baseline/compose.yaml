@@ -1,0 +1,46 @@
+name: aot-buildpacks-01-spring-java-baseline
+
+services:
+  app:
+    image: ${IMAGE:-aot-buildpacks/01-spring-java-baseline:local}
+    pull_policy: never
+    cpus: 1.0
+    mem_limit: 512m
+    init: true
+    ports:
+      - "127.0.0.1:${PORT:-8080}:8080"
+
+  pack:
+    profiles: [tools]
+    image: ${PACK_IMAGE:-buildpacksio/pack:0.40.9}
+    working_dir: /workspace
+    volumes:
+      - ../..:/workspace:ro
+      - ${DOCKER_SOCKET:-/var/run/docker.sock}:/var/run/docker.sock
+
+  client:
+    cpus: 2.0
+    mem_limit: 256m
+    profiles: [tools]
+    image: ${HELPER_IMAGE:-python:3.13-slim}
+    working_dir: /workspace
+    entrypoint: [python3, /workspace/benchmark/check_app.py]
+    volumes:
+      - ../..:/workspace:ro
+
+  benchmark:
+    cpus: 2.0
+    mem_limit: 256m
+    profiles: [benchmark]
+    image: ${HELPER_IMAGE:-python:3.13-slim}
+    working_dir: /workspace
+    entrypoint: [python3, /workspace/benchmark/run.py]
+    environment:
+      REPORT_HOST_RESULTS: ${REPORT_HOST_RESULTS:-}
+      TERM: ${TERM:-dumb}
+      NO_COLOR: ${NO_COLOR:-}
+      FORCE_COLOR: ${FORCE_COLOR:-}
+    volumes:
+      - ../..:/workspace:ro
+      - ../../results:/results
+      - ${DOCKER_SOCKET:-/var/run/docker.sock}:/var/run/docker.sock

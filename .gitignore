@@ -1,0 +1,10 @@
+/results/
+**/build/
+**/.gradle/
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.env
+*.aot
+*.jsa
